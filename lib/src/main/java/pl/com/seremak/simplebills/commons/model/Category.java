@@ -35,7 +35,7 @@ public class Category extends VersionedEntity {
     @Nullable
     private Type type;
 
-    @NotNull
+    @NotNull(message = "Transaction type cannot be null")
     private TransactionType transactionType;
 
     @Nullable
