@@ -29,7 +29,4 @@ public class CategoryCreationRequestDto {
 
     @Nullable
     private BigDecimal limit;
-
-    @Nullable
-    private BigDecimal usageOfLimit;
 }
