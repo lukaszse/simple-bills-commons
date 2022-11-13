@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 import pl.com.seremak.simplebills.commons.model.Category;
 
 import javax.validation.constraints.NotBlank;
@@ -27,12 +28,18 @@ public class CategoryEventDto implements Serializable {
     @NotBlank(message = "Name of Category cannot be blank")
     private String categoryName;
 
+    @NotNull(message = "Action type cannot be null")
+    private ActionType actionType;
+
     @NotNull(message = "Transaction type cannot be null")
     private Category.TransactionType transactionType;
 
+    @Nullable
     private BigDecimal limit;
 
+    @Nullable
     private BigDecimal usageOfLimit;
 
-    private ActionType actionType;
+    @Nullable
+    private String replacementCategoryName;
 }

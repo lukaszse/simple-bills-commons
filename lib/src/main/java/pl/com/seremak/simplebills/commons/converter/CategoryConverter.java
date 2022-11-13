@@ -72,4 +72,16 @@ public class CategoryConverter {
                 .actionType(actionType)
                 .build();
     }
+
+    public static CategoryEventDto toCategoryDeletionEventDto(final Category category, final String replacementCategoryName) {
+        return CategoryEventDto.builder()
+                .username(category.getUsername())
+                .categoryName(category.getName())
+                .replacementCategoryName(replacementCategoryName)
+                .transactionType(category.getTransactionType())
+                .limit(category.getLimit())
+                .usageOfLimit(category.getUsageOfLimit())
+                .actionType(ActionType.DELETION)
+                .build();
+    }
 }
