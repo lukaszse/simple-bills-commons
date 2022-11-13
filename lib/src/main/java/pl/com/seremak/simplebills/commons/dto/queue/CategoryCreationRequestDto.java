@@ -10,13 +10,14 @@ import pl.com.seremak.simplebills.commons.model.Category;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryCreationRequestDto {
+public class CategoryCreationRequestDto implements Serializable {
 
     @NotNull(message = "Username cannot be blank")
     private String username;
