@@ -23,6 +23,11 @@ public class CategoryConverter {
                 .build();
     }
 
+    public static Category toCategory(final CategoryDto categoryDto,
+                                      final Category.TransactionType transactionType) {
+        return toCategory(categoryDto.getUsername(), categoryDto);
+    }
+
     public static Category toCategory(final String username,
                                       final String categoryName,
                                       final Category.TransactionType transactionType) {
@@ -40,17 +45,6 @@ public class CategoryConverter {
                 .transactionType(toTransactionTypeEnum(categoryDto))
                 .name(categoryDto.getName())
                 .limit(categoryDto.getLimit())
-                .build();
-    }
-
-    public static Category toCategory(final CategoryCreationRequestDto categoryCreationRequest,
-                                      final Category.Type categoryType) {
-        return Category.builder()
-                .username(categoryCreationRequest.getUsername())
-                .type(categoryType)
-                .transactionType(categoryCreationRequest.getTransactionType())
-                .name(categoryCreationRequest.getCategoryName())
-                .limit(categoryCreationRequest.getLimit())
                 .build();
     }
 
