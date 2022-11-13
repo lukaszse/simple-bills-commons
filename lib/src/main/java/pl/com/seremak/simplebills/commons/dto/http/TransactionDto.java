@@ -18,6 +18,7 @@ import java.time.LocalDate;
 @AllArgsConstructor(staticName = "of")
 public class TransactionDto {
 
+    @Nullable
     @Pattern(regexp = "^[a-zA-Z]+\\w{1,19}", message = "Login must start with a letter and has 2 - 20 word characters (digits, letters, _)")
     private String user;
 

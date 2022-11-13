@@ -14,8 +14,9 @@ import static pl.com.seremak.simplebills.commons.utils.DateUtils.toInstantUTC;
 
 public class TransactionConverter {
 
-    public static Transaction toTransaction(final TransactionDto transactionDto) {
+    public static Transaction toTransaction(final String username, final TransactionDto transactionDto) {
         final Transaction.TransactionBuilder transactionBuilder = Transaction.builder()
+                .user(username)
                 .user(transactionDto.getUser())
                 .type(valueOf(transactionDto.getType().toUpperCase()))
                 .transactionNumber(transactionDto.getTransactionNumber())

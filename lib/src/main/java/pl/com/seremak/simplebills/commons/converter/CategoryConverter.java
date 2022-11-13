@@ -55,11 +55,22 @@ public class CategoryConverter {
     }
 
     public static CategoryDto toCategoryDto(final Category category) {
-        return CategoryDto.of(category.getName(), category.getTransactionType().toString(), category.getLimit());
+        return CategoryDto.builder()
+                .username(category.getUsername())
+                .name(category.getName())
+                .transactionType(category.getTransactionType().toString().toUpperCase())
+                .limit(category.getLimit())
+                .build();
     }
 
-    public static CategoryDto toCategoryDto(final String categoryName, final Category.TransactionType transactionType) {
-        return CategoryDto.of(categoryName, transactionType.toString().toUpperCase(), null);
+    public static CategoryDto toCategoryDto(final String username,
+                                            final String categoryName,
+                                            final Category.TransactionType transactionType) {
+        return CategoryDto.builder()
+                .username(username)
+                .name(categoryName)
+                .transactionType(transactionType.toString().toUpperCase())
+                .build();
     }
 
 
