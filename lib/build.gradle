@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'pl.com.seremak.simplebills'
-version = '0.0.2'
+version = '0.0.3'
 sourceCompatibility = '17'
 
 repositories {
@@ -28,8 +28,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-
-    // Use the awesome Spock testing and specification framework even with Java
     testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
     testImplementation 'junit:junit:4.13.2'
 }
