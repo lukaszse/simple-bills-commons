@@ -24,8 +24,8 @@ public class CategoryConverter {
     }
 
     public static Category toCategory(final CategoryDto categoryDto,
-                                      final Category.TransactionType transactionType) {
-        return toCategory(categoryDto.getUsername(), categoryDto);
+                                      final Category.Type type) {
+        return toCategory(categoryDto.getUsername(), categoryDto, type);
     }
 
     public static Category toCategory(final String username,
