@@ -1,5 +1,6 @@
 package pl.com.seremak.simplebills.commons.utils;
 
+import pl.com.seremak.simplebills.commons.dto.queue.ActionType;
 import pl.com.seremak.simplebills.commons.dto.queue.TransactionEventDto;
 
 import java.math.BigDecimal;
@@ -16,7 +17,7 @@ public class TransactionBalanceUtils {
 
     private static BigDecimal calculateBalanceAfterTransaction(final BigDecimal currentBalance,
                                                                final BigDecimal transactionAmount,
-                                                               final TransactionEventDto.ActionType type) {
+                                                               final ActionType type) {
         return switch (type) {
             case CREATION, UPDATE -> currentBalance.add(transactionAmount);
             case DELETION -> currentBalance.subtract(transactionAmount);

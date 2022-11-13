@@ -1,6 +1,7 @@
 package pl.com.seremak.simplebills.commons.converter;
 
 import pl.com.seremak.simplebills.commons.dto.http.TransactionDto;
+import pl.com.seremak.simplebills.commons.dto.queue.ActionType;
 import pl.com.seremak.simplebills.commons.dto.queue.TransactionEventDto;
 import pl.com.seremak.simplebills.commons.model.Transaction;
 import pl.com.seremak.simplebills.commons.utils.DateUtils;
@@ -44,12 +45,12 @@ public class TransactionConverter {
     }
 
     public static TransactionEventDto toTransactionDto(final Transaction transaction,
-                                                       final TransactionEventDto.ActionType actionType) {
+                                                       final ActionType actionType) {
         return toTransactionDto(transaction, actionType, transaction.getAmount());
     }
 
     public static TransactionEventDto toTransactionDto(final Transaction transaction,
-                                                       final TransactionEventDto.ActionType actionType,
+                                                       final ActionType actionType,
                                                        final BigDecimal amountDiff) {
         return TransactionEventDto.builder()
                 .username(transaction.getUser())
