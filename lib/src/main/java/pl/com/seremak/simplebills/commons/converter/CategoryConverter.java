@@ -43,9 +43,11 @@ public class CategoryConverter {
                 .build();
     }
 
-    public static Category toCategoryDto(final CategoryCreationRequestDto categoryCreationRequest) {
+    public static Category toCategory(final CategoryCreationRequestDto categoryCreationRequest,
+                                      final Category.Type categoryType) {
         return Category.builder()
                 .username(categoryCreationRequest.getUsername())
+                .type(categoryType)
                 .transactionType(categoryCreationRequest.getTransactionType())
                 .name(categoryCreationRequest.getCategoryName())
                 .limit(categoryCreationRequest.getLimit())
