@@ -42,5 +42,7 @@ public class Category extends VersionedEntity {
     @Field(targetType = FieldType.DECIMAL128)
     private BigDecimal limit;
 
+    @Nullable
+    @Field(targetType = FieldType.DECIMAL128)
     private BigDecimal usageOfLimit;
 }

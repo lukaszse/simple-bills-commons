@@ -1,6 +1,8 @@
 package pl.com.seremak.simplebills.commons.converter;
 
 import pl.com.seremak.simplebills.commons.dto.http.CategoryDto;
+import pl.com.seremak.simplebills.commons.dto.queue.ActionType;
+import pl.com.seremak.simplebills.commons.dto.queue.CategoryEventDto;
 import pl.com.seremak.simplebills.commons.model.Category;
 
 import java.util.List;
@@ -58,5 +60,16 @@ public class CategoryConverter {
 
     public static Category.TransactionType toTransactionTypeEnum(final CategoryDto categoryDto) {
         return Category.TransactionType.valueOf(categoryDto.getTransactionType().toUpperCase());
+    }
+
+    public static CategoryEventDto toCategoryEventDto(final Category category, final ActionType actionType) {
+        return CategoryEventDto.builder()
+                .username(category.getUsername())
+                .categoryName(category.getName())
+                .transactionType(category.getTransactionType())
+                .limit(category.getLimit())
+                .usageOfLimit(category.getUsageOfLimit())
+                .actionType(actionType)
+                .build();
     }
 }
