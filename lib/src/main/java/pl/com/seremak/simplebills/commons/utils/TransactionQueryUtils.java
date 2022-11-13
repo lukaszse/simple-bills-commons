@@ -3,7 +3,7 @@ package pl.com.seremak.simplebills.commons.utils;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import pl.com.seremak.simplebills.commons.model.TransactionQueryParams;
+import pl.com.seremak.simplebills.commons.dto.http.TransactionQueryParams;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;

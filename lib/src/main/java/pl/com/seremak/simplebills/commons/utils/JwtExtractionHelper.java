@@ -3,7 +3,7 @@ package pl.com.seremak.simplebills.commons.utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import pl.com.seremak.simplebills.commons.model.TokenUser;
+import pl.com.seremak.simplebills.commons.dto.http.TokenUser;
 
 import java.util.Map;
 

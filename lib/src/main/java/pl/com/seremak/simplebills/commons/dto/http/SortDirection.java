@@ -1,4 +1,4 @@
-package pl.com.seremak.simplebills.commons.model;
+package pl.com.seremak.simplebills.commons.dto.http;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

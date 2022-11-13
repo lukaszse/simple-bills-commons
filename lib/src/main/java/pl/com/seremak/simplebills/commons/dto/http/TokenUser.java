@@ -1,4 +1,4 @@
-package pl.com.seremak.simplebills.commons.model;
+package pl.com.seremak.simplebills.commons.dto.http;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
