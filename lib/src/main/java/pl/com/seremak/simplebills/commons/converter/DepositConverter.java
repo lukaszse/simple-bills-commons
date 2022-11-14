@@ -6,9 +6,15 @@ import pl.com.seremak.simplebills.commons.model.Deposit;
 public class DepositConverter {
 
     public static Deposit toDeposit(final String username, final DepositDto depositDto) {
+        return toDeposit(username, depositDto.getName(), depositDto);
+    }
+
+    public static Deposit toDeposit(final String username,
+                                    final String depositName,
+                                    final DepositDto depositDto) {
         final Deposit deposit = new Deposit();
         deposit.setUsername(username);
-        deposit.setName(depositDto.getName());
+        deposit.setName(depositName);
         deposit.setValue(depositDto.getValue());
         deposit.setDepositType(depositDto.getDepositType());
         deposit.setBankName(depositDto.getBankName());

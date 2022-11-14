@@ -2,7 +2,6 @@ package pl.com.seremak.simplebills.commons.converter;
 
 import pl.com.seremak.simplebills.commons.dto.http.CategoryDto;
 import pl.com.seremak.simplebills.commons.dto.queue.ActionType;
-import pl.com.seremak.simplebills.commons.dto.queue.CategoryCreationRequestDto;
 import pl.com.seremak.simplebills.commons.dto.queue.CategoryEventDto;
 import pl.com.seremak.simplebills.commons.model.Category;
 
@@ -40,10 +39,16 @@ public class CategoryConverter {
     }
 
     public static Category toCategory(final String username, final CategoryDto categoryDto) {
+        return toCategory(username, categoryDto.getName(), categoryDto);
+    }
+
+    public static Category toCategory(final String username,
+                                      final String categoryName,
+                                      final CategoryDto categoryDto) {
         return Category.builder()
                 .username(username)
                 .transactionType(toTransactionTypeEnum(categoryDto))
-                .name(categoryDto.getName())
+                .name(categoryName)
                 .limit(categoryDto.getLimit())
                 .build();
     }

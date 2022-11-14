@@ -15,15 +15,21 @@ import static pl.com.seremak.simplebills.commons.utils.DateUtils.toInstantUTC;
 public class TransactionConverter {
 
     public static Transaction toTransaction(final TransactionDto transactionDto) {
-        return toTransaction(transactionDto.getUser(), transactionDto);
+        return toTransaction(transactionDto.getUser(), transactionDto.getTransactionNumber(), transactionDto);
     }
 
     public static Transaction toTransaction(final String username, final TransactionDto transactionDto) {
+        return toTransaction(username, transactionDto.getTransactionNumber(), transactionDto);
+    }
+
+    public static Transaction toTransaction(final String username,
+                                            final Integer transactionNumber,
+                                            final TransactionDto transactionDto) {
         final Transaction.TransactionBuilder transactionBuilder = Transaction.builder()
                 .user(username)
                 .user(transactionDto.getUser())
                 .type(valueOf(transactionDto.getType().toUpperCase()))
-                .transactionNumber(transactionDto.getTransactionNumber())
+                .transactionNumber(transactionNumber)
                 .description(transactionDto.getDescription())
                 .amount(normalizeAmount(transactionDto.getAmount(), transactionDto.getType()))
                 .category(transactionDto.getCategory());
