@@ -27,7 +27,6 @@ public class TransactionConverter {
                                             final TransactionDto transactionDto) {
         final Transaction.TransactionBuilder transactionBuilder = Transaction.builder()
                 .user(username)
-                .user(transactionDto.getUser())
                 .type(valueOf(transactionDto.getType().toUpperCase()))
                 .transactionNumber(transactionNumber)
                 .description(transactionDto.getDescription())
