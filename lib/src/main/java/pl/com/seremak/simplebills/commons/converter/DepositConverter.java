@@ -18,6 +18,7 @@ public class DepositConverter {
         deposit.setValue(depositDto.getValue());
         deposit.setDepositType(depositDto.getDepositType());
         deposit.setBankName(depositDto.getBankName());
+        deposit.setDurationInMonths(depositDto.getDurationInMonths());
         deposit.setAnnualInterestRate(depositDto.getAnnualInterestRate());
         return deposit;
     }
@@ -28,6 +29,7 @@ public class DepositConverter {
         depositDto.setValue(deposit.getValue());
         depositDto.setDepositType(deposit.getDepositType());
         depositDto.setBankName(deposit.getBankName());
+        depositDto.setDurationInMonths(deposit.getDurationInMonths());
         depositDto.setAnnualInterestRate(deposit.getAnnualInterestRate());
         return depositDto;
     }
