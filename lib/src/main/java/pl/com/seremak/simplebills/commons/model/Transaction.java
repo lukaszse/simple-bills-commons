@@ -40,5 +40,4 @@ public class Transaction extends VersionedEntity {
 
     @Field(targetType = FieldType.DECIMAL128)
     private BigDecimal amount;
-
 }

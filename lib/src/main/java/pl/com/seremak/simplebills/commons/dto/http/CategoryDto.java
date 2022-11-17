@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
+import pl.com.seremak.simplebills.commons.model.Category;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,9 @@ public class CategoryDto {
 
     @NotNull(message = "Transaction type cannot be null")
     private String transactionType;
+
+    @Nullable
+    private Category.Type type;
 
     @Nullable
     private BigDecimal limit;
