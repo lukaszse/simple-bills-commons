@@ -3,6 +3,7 @@ package pl.com.seremak.simplebills.commons.converter;
 import pl.com.seremak.simplebills.commons.dto.http.TransactionDto;
 import pl.com.seremak.simplebills.commons.dto.queue.ActionType;
 import pl.com.seremak.simplebills.commons.dto.queue.TransactionEventDto;
+import pl.com.seremak.simplebills.commons.dto.queue.TransactionRequestDto;
 import pl.com.seremak.simplebills.commons.model.Transaction;
 import pl.com.seremak.simplebills.commons.utils.DateUtils;
 
@@ -14,8 +15,18 @@ import static pl.com.seremak.simplebills.commons.utils.DateUtils.toInstantUTC;
 
 public class TransactionConverter {
 
-    public static Transaction toTransaction(final TransactionDto transactionDto) {
-        return toTransaction(transactionDto.getUser(), transactionDto.getTransactionNumber(), transactionDto);
+
+    public static Transaction toTransaction(final TransactionRequestDto transactionRequestDto) {
+        final Transaction.TransactionBuilder transactionBuilder = Transaction.builder()
+                .user(transactionRequestDto.getUser())
+                .type(valueOf(transactionRequestDto.getType().toUpperCase()))
+                .transactionNumber(transactionRequestDto.getTransactionNumber())
+                .description(transactionRequestDto.getDescription())
+                .amount(normalizeAmount(transactionRequestDto.getAmount(), transactionRequestDto.getType()))
+                .category(transactionRequestDto.getCategory());
+        toInstantUTC(transactionRequestDto.getDate())
+                .ifPresent(transactionBuilder::date);
+        return transactionBuilder.build();
     }
 
     public static Transaction toTransaction(final String username, final TransactionDto transactionDto) {
@@ -32,25 +43,20 @@ public class TransactionConverter {
                 .description(transactionDto.getDescription())
                 .amount(normalizeAmount(transactionDto.getAmount(), transactionDto.getType()))
                 .category(transactionDto.getCategory());
-
         toInstantUTC(transactionDto.getDate())
                 .ifPresent(transactionBuilder::date);
-
         return transactionBuilder.build();
     }
 
     public static TransactionDto toTransactionDto(final Transaction transaction) {
         final TransactionDto.TransactionDtoBuilder transactionDtoBuilder = TransactionDto.builder()
-                .user(transaction.getUser())
                 .type(transaction.getType().toString().toUpperCase())
                 .transactionNumber(transaction.getTransactionNumber())
                 .description(transaction.getDescription())
                 .amount(normalizeAmount(transaction.getAmount(), transaction.getType()))
                 .category(transaction.getCategory());
-
         DateUtils.toLocalDate(transaction.getDate())
                 .ifPresent(transactionDtoBuilder::date);
-
         return transactionDtoBuilder.build();
     }
 
