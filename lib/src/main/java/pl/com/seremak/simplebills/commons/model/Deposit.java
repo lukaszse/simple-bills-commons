@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 import java.math.BigDecimal;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,4 +26,6 @@ public class Deposit extends Asset {
 
     @Field(targetType = FieldType.DECIMAL128)
     private BigDecimal annualInterestRate;
+
+    private Integer transactionNumber;
 }

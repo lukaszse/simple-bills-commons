@@ -1,10 +1,10 @@
 package pl.com.seremak.simplebills.commons.converter;
 
 import org.apache.commons.lang3.StringUtils;
+import pl.com.seremak.simplebills.commons.dto.http.DepositDto;
 import pl.com.seremak.simplebills.commons.dto.http.TransactionDto;
 import pl.com.seremak.simplebills.commons.dto.queue.ActionType;
 import pl.com.seremak.simplebills.commons.dto.queue.TransactionEventDto;
-import pl.com.seremak.simplebills.commons.dto.queue.TransactionRequestDto;
 import pl.com.seremak.simplebills.commons.model.Category;
 import pl.com.seremak.simplebills.commons.model.Deposit;
 import pl.com.seremak.simplebills.commons.model.Transaction;
@@ -17,31 +17,29 @@ import static pl.com.seremak.simplebills.commons.model.Transaction.Type.EXPENSE;
 import static pl.com.seremak.simplebills.commons.model.Transaction.Type.valueOf;
 import static pl.com.seremak.simplebills.commons.utils.DateUtils.toInstantUTC;
 
+;
+
 public class TransactionConverter {
 
 
-    public static Transaction toTransaction(final TransactionRequestDto transactionRequestDto) {
-        final Transaction.TransactionBuilder transactionBuilder = Transaction.builder()
-                .user(transactionRequestDto.getUser())
-                .type(valueOf(transactionRequestDto.getType().toUpperCase()))
-                .transactionNumber(transactionRequestDto.getTransactionNumber())
-                .description(transactionRequestDto.getDescription())
-                .amount(normalizeAmount(transactionRequestDto.getAmount(), transactionRequestDto.getType()))
-                .category(transactionRequestDto.getCategory());
-        toInstantUTC(transactionRequestDto.getDate())
-                .ifPresent(transactionBuilder::date);
-        return transactionBuilder.build();
+    public static TransactionDto toTransactionDto(final DepositDto depositDto) {
+        return TransactionDto.builder()
+                .category(Category.Type.ASSET.toString())
+                .type(EXPENSE.toString())
+                .amount(depositDto.getValue())
+                .date(LocalDate.now())
+                .description(prepareDescription(depositDto.getName(), depositDto.getBankName()))
+                .build();
     }
 
-    public static TransactionRequestDto toTransactionRequestDto(final Deposit deposit, final ActionType requestType) {
-        return TransactionRequestDto.builder()
-                .requestType(requestType)
-                .user(deposit.getUsername())
+    public static TransactionDto toTransactionDto(final Deposit deposit) {
+        return TransactionDto.builder()
+                .transactionNumber(deposit.getTransactionNumber())
                 .category(Category.Type.ASSET.toString())
                 .type(EXPENSE.toString())
                 .amount(deposit.getValue())
                 .date(LocalDate.now())
-                .description(prepareDescription(deposit))
+                .description(prepareDescription(deposit.getName(), deposit.getBankName()))
                 .build();
     }
 
@@ -103,10 +101,10 @@ public class TransactionConverter {
         return normalizeAmount(amount, transactionType);
     }
 
-    private static String prepareDescription(final Deposit deposit) {
-        final String description = StringUtils.isBlank(deposit.getBankName()) ?
-                "Deposit: `%s`".formatted(deposit.getName()) :
-                "Deposit: `%s`in %s".formatted(deposit.getName(), deposit.getBankName());
+    private static String prepareDescription(final String depositName, final String bankName) {
+        final String description = StringUtils.isBlank(bankName) ?
+                "%s".formatted(depositName) :
+                "%s in %s".formatted(depositName, bankName);
         return description.substring(0, 1).toUpperCase() + description.substring(1);
     }
 }

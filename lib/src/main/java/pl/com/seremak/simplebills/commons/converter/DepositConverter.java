@@ -5,11 +5,16 @@ import pl.com.seremak.simplebills.commons.model.Deposit;
 
 public class DepositConverter {
 
-    public static Deposit toDeposit(final String username, final DepositDto depositDto) {
-        return toDeposit(username, depositDto.getName(), depositDto);
+    public static Deposit toDeposit(final String username, final String depositName, final DepositDto depositDto) {
+        return toDeposit(username, null, depositName, depositDto);
+    }
+
+    public static Deposit toDeposit(final String username, final Integer transactionNumber, final DepositDto depositDto) {
+        return toDeposit(username, transactionNumber, depositDto.getName(), depositDto);
     }
 
     public static Deposit toDeposit(final String username,
+                                    final Integer transactionNumber,
                                     final String depositName,
                                     final DepositDto depositDto) {
         final Deposit deposit = new Deposit();
@@ -20,6 +25,7 @@ public class DepositConverter {
         deposit.setBankName(depositDto.getBankName());
         deposit.setDurationInMonths(depositDto.getDurationInMonths());
         deposit.setAnnualInterestRate(depositDto.getAnnualInterestRate());
+        deposit.setTransactionNumber(transactionNumber);
         return deposit;
     }
 

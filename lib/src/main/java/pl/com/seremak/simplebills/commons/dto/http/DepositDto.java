@@ -32,5 +32,6 @@ public class DepositDto {
     @Nullable
     private Integer durationInMonths;
 
+    @Builder.Default
     private BigDecimal annualInterestRate = BigDecimal.ZERO;
 }
