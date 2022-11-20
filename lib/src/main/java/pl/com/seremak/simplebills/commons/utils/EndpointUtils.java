@@ -2,7 +2,6 @@ package pl.com.seremak.simplebills.commons.utils;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriUtils;
-import org.yaml.snakeyaml.util.UriEncoder;
 
 import java.net.URI;
 
@@ -13,8 +12,8 @@ public class EndpointUtils {
     }
 
     public static <T> ResponseEntity<T> prepareCreatedResponse(final String uriPattern, final String identifier, final T body) {
-        final String format = String.format(uriPattern, identifier);
-        final URI uri = URI.create(UriUtils.encode(format, "UTF-8"));
+        final String uriStr = String.format(uriPattern, UriUtils.encode(identifier, "UTF-8"));
+        final URI uri = URI.create(uriStr);
         return ResponseEntity.created(uri)
                 .body(body);
     }
