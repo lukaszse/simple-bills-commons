@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
+@Data
 @Builder
 @Document
 @NoArgsConstructor

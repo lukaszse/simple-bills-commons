@@ -6,8 +6,7 @@ import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")

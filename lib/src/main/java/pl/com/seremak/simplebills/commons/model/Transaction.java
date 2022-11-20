@@ -12,8 +12,7 @@ import java.time.Instant;
 
 
 @Document
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

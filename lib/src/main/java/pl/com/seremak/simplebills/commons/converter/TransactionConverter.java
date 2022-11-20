@@ -1,13 +1,17 @@
 package pl.com.seremak.simplebills.commons.converter;
 
+import org.apache.commons.lang3.StringUtils;
 import pl.com.seremak.simplebills.commons.dto.http.TransactionDto;
 import pl.com.seremak.simplebills.commons.dto.queue.ActionType;
 import pl.com.seremak.simplebills.commons.dto.queue.TransactionEventDto;
 import pl.com.seremak.simplebills.commons.dto.queue.TransactionRequestDto;
+import pl.com.seremak.simplebills.commons.model.Category;
+import pl.com.seremak.simplebills.commons.model.Deposit;
 import pl.com.seremak.simplebills.commons.model.Transaction;
 import pl.com.seremak.simplebills.commons.utils.DateUtils;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import static pl.com.seremak.simplebills.commons.model.Transaction.Type.EXPENSE;
 import static pl.com.seremak.simplebills.commons.model.Transaction.Type.valueOf;
@@ -27,6 +31,18 @@ public class TransactionConverter {
         toInstantUTC(transactionRequestDto.getDate())
                 .ifPresent(transactionBuilder::date);
         return transactionBuilder.build();
+    }
+
+    public static TransactionRequestDto toTransactionRequestDto(final Deposit deposit, final ActionType requestType) {
+        return TransactionRequestDto.builder()
+                .requestType(requestType)
+                .user(deposit.getUsername())
+                .category(Category.Type.ASSET.toString())
+                .type(EXPENSE.toString())
+                .amount(deposit.getValue())
+                .date(LocalDate.now())
+                .description(prepareDescription(deposit))
+                .build();
     }
 
     public static Transaction toTransaction(final String username, final TransactionDto transactionDto) {
@@ -85,5 +101,12 @@ public class TransactionConverter {
     private static BigDecimal normalizeAmount(final BigDecimal amount, final String transactionTypeStr) {
         final Transaction.Type transactionType = valueOf(transactionTypeStr);
         return normalizeAmount(amount, transactionType);
+    }
+
+    private static String prepareDescription(final Deposit deposit) {
+        final String description = StringUtils.isBlank(deposit.getBankName()) ?
+                "Deposit: `%s`".formatted(deposit.getName()) :
+                "Deposit: `%s`in %s".formatted(deposit.getName(), deposit.getBankName());
+        return description.substring(0, 1).toUpperCase() + description.substring(1);
     }
 }

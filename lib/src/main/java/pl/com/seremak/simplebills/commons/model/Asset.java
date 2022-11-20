@@ -1,14 +1,12 @@
 package pl.com.seremak.simplebills.commons.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class Asset extends VersionedEntity {
