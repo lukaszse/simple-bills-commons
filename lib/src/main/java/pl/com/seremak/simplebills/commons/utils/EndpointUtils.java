@@ -18,4 +18,8 @@ public class EndpointUtils {
         return ResponseEntity.created(uri)
                 .body(body);
     }
+
+    public static String decodeUriParam(final String uriParam) {
+        return UriUtils.decode(uriParam, "UTF-8");
+    }
 }
