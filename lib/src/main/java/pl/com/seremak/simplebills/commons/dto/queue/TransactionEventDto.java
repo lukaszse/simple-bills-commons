@@ -17,16 +17,9 @@ import java.time.Instant;
 @AllArgsConstructor
 public class TransactionEventDto implements Serializable {
 
-    @NotBlank(message = "Username cannot be blank")
     private String username;
-
-    @NotBlank(message = "Name of Category cannot be blank")
     private String categoryName;
-
-    @NotBlank(message = "Amount cannot be blank")
     private BigDecimal amount;
-
     private ActionType type;
-
     private Instant date;
 }

@@ -16,12 +16,8 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
-public class TransactionDto implements Serializable {
-
-    @Nullable
-    @Pattern(regexp = "^\\S+$", message = "Username must contain only non-whitespace characters and cannot be empty")
-    private String user;
-
+public class TransactionDto {
+    
     private Integer transactionNumber;
 
     @NotNull(message = "Transaction type cannot be null")
