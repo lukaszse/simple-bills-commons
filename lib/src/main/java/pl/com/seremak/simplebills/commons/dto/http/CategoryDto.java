@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 public class CategoryDto {
 
     @Nullable
-    @Pattern(regexp = "^[a-zA-Z]+\\w{1,19}", message = "Login must start with a letter and has 2 - 20 word characters (digits, letters, _)")
+    @Pattern(regexp = "^\\S+$", message = "Username must contain only non-whitespace characters and cannot be empty")
     private String username;
 
     @NotBlank(message = "Name of Category cannot be blank")

@@ -1,7 +1,7 @@
 package pl.com.seremak.simplebills.commons.dto.http;
 
-import com.mongodb.lang.Nullable;
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class TransactionDto {
 
     @Nullable
-    @Pattern(regexp = "^[a-zA-Z]+\\w{1,19}", message = "Login must start with a letter and has 2 - 20 word characters (digits, letters, _)")
+    @Pattern(regexp = "^\\S+$", message = "Username must contain only non-whitespace characters and cannot be empty")
     private String user;
 
     private Integer transactionNumber;
