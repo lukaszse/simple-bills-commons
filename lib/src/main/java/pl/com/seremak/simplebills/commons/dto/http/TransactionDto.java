@@ -7,16 +7,16 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
-public class TransactionDto {
+public class TransactionDto implements Serializable {
 
     @Nullable
     @Pattern(regexp = "^\\S+$", message = "Username must contain only non-whitespace characters and cannot be empty")

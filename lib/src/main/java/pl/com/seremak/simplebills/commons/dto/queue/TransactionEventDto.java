@@ -17,9 +17,6 @@ import java.time.Instant;
 @AllArgsConstructor
 public class TransactionEventDto implements Serializable {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
-
     @NotBlank(message = "Username cannot be blank")
     private String username;
 

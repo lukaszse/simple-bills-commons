@@ -19,9 +19,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class CategoryEventDto implements Serializable {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
-
     @NotNull(message = "Username cannot be blank")
     private String username;
 
