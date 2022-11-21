@@ -1,6 +1,9 @@
 package pl.com.seremak.simplebills.commons.model;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
@@ -11,11 +14,27 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @Document
 @NoArgsConstructor
-@AllArgsConstructor
 public class Deposit extends Asset {
 
     public enum DepositType {
         PERPETUAL, TERM
+    }
+
+    @Builder
+    public Deposit(final String username,
+                   final String name,
+                   final BigDecimal value,
+                   final DepositType depositType,
+                   final String bankName,
+                   final Integer durationInMonths,
+                   final BigDecimal annualInterestRate,
+                   final Integer transactionNumber) {
+        super(username, name, value);
+        this.depositType = depositType;
+        this.bankName = bankName;
+        this.durationInMonths = durationInMonths;
+        this.annualInterestRate = annualInterestRate;
+        this.transactionNumber = transactionNumber;
     }
 
     private DepositType depositType;

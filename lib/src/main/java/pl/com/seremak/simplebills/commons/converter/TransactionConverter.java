@@ -24,7 +24,7 @@ public class TransactionConverter {
 
     public static TransactionDto toTransactionDto(final DepositDto depositDto) {
         return TransactionDto.builder()
-                .category(Category.Type.ASSET.toString())
+                .category(Category.Type.ASSET.toString().toLowerCase())
                 .type(EXPENSE.toString())
                 .amount(depositDto.getValue())
                 .date(LocalDate.now())
@@ -35,7 +35,7 @@ public class TransactionConverter {
     public static TransactionDto toTransactionDto(final Deposit deposit) {
         return TransactionDto.builder()
                 .transactionNumber(deposit.getTransactionNumber())
-                .category(Category.Type.ASSET.toString())
+                .category(Category.Type.ASSET.toString().toLowerCase())
                 .type(EXPENSE.toString())
                 .amount(deposit.getValue())
                 .date(LocalDate.now())
