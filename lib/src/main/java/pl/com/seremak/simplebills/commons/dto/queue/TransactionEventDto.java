@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -16,9 +14,9 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TransactionEventDto implements Serializable {
-
     private String username;
     private String categoryName;
+    private Integer transactionNumber;
     private BigDecimal amount;
     private ActionType type;
     private Instant date;

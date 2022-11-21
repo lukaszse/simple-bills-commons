@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryCreationRequestDto implements Serializable {
-
     private String username;
     private String categoryName;
     private Category.TransactionType transactionType;

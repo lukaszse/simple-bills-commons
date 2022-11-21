@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryEventDto implements Serializable {
-
     private String username;
     private String categoryName;
     private ActionType actionType;

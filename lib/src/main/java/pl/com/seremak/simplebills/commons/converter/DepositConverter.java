@@ -1,7 +1,7 @@
 package pl.com.seremak.simplebills.commons.converter;
 
 import pl.com.seremak.simplebills.commons.dto.http.DepositDto;
-import pl.com.seremak.simplebills.commons.dto.http.TransactionDto;
+import pl.com.seremak.simplebills.commons.dto.queue.TransactionEventDto;
 import pl.com.seremak.simplebills.commons.model.Deposit;
 
 public class DepositConverter {
@@ -41,10 +41,11 @@ public class DepositConverter {
                 .build();
     }
 
-    public static Deposit toDeposit(final TransactionDto transactionDto) {
+    public static Deposit toDeposit(final TransactionEventDto transactionEventDto) {
         return Deposit.builder()
-                .transactionNumber(transactionDto.getTransactionNumber())
-                .value(transactionDto.getAmount())
+                .username(transactionEventDto.getUsername())
+                .transactionNumber(transactionEventDto.getTransactionNumber())
+                .value(transactionEventDto.getAmount())
                 .build();
     }
 }
